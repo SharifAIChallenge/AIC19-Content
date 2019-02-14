@@ -1,8 +1,11 @@
 from search import search
 from driver import *
 
-def main():
+from IPython.display import display_html
+def restartkernel() :
+    display_html("<script>Jupyter.notebook.kernel.restart()</script>",raw=True)
 
+def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('board')
@@ -17,6 +20,7 @@ def main():
     stop = timeit.default_timer()
 		
     export(frontier, stop-start)
+    restartkernel()
 
 
 function_map = {

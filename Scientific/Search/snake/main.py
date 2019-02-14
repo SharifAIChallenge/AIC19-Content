@@ -30,6 +30,10 @@ RIGHT = 'right'
 
 HEAD = 0 # syntactic sugar: index of the worm's head
 
+from IPython.display import display_html
+def restartkernel() :
+    display_html("<script>Jupyter.notebook.kernel.restart()</script>",raw=True)
+
 def main():
     global FPSCLOCK, DISPLAYSURF, BASICFONT
 
@@ -43,6 +47,8 @@ def main():
     while True:
         runGame()
         showGameOverScreen()
+        restartkernel()
+
 
 def get_direction(head_, last_direction):
     if head_['x'] == 1:

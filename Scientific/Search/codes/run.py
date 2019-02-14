@@ -13,13 +13,9 @@ def main():
 
     read(args.board)
 
-    start = timeit.default_timer()
-
     frontier = search(initial_state)
-
-    stop = timeit.default_timer()
 		
-    export(frontier, stop-start)
+    export(frontier)
     restartkernel()
 
 

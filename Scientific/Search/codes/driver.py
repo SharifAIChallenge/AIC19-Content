@@ -1,7 +1,6 @@
 
 import argparse
 import timeit
-import resource
 from collections import deque
 from state import State
 from heapq import heappush, heappop, heapify
@@ -300,7 +299,7 @@ def backtrace():
     return moves
 
 
-def export(frontier, time):
+def export(frontier):
 
     global moves
 
@@ -313,8 +312,6 @@ def export(frontier, time):
     print("max_fringe_size: " + str(max_frontier_size))
     print("search_depth: " + str(goal_node.depth))
     print("max_search_depth: " + str(max_search_depth))
-    print("running_time: " + format(time, '.8f'))
-    print("max_ram_usage: " + format(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1000.0, '.8f'))   
 
 
 def read(configuration):
@@ -343,13 +340,9 @@ def main():
 
     function = function_map[args.algorithm]
 
-    start = timeit.default_timer()
-
     frontier = function(initial_state)
 
-    stop = timeit.default_timer()
-
-    export(frontier, stop-start)
+    export(frontier)
 
 
 function_map = {
